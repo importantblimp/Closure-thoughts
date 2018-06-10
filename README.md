@@ -1,9 +1,9 @@
 # Closure thoughts
-I was doing some thinking about closures and mutable state, and decided to write down my thoughts on the matter.
+I was doing some thinking about closures and mutable state, and decided to write down my thoughts on the matter - code and documentation are available in main.py.
 
 ## Background
 ### What is a closure?
-A closure is a function that references some state. It "closes" over the state, so that is available where the function is called.
+A closure is a function that references some external state. It "closes" over the state, so that is available where the function is called.
 
 ### Why is this useful?
 Let's say you have a function that takes another function that takes an int (in pseudocode):
