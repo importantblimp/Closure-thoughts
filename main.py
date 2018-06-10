@@ -1,5 +1,8 @@
-# This is a fun little discussion of closures and mutable state
-# The file is meant to be read from top to bottom as is, and may be run
+'''
+This is a fun little discussion of closures and mutable state
+The file is meant to be read from top to bottom, and may be executed, as is
+'''
+
 
 '''
 I was thinking about closures and mutable state and came up with a function that counts while keeping track of mutable state internally.
@@ -10,7 +13,7 @@ These block comments are for my commentary, and regular comments are for the cod
 '''
 
 def counter(starting):
-    n = starting - 1 # We increment first, and we want to start at starting
+    n = starting - 1 # We increment n in nextValueF before returning, and we want our first return to be `starting`
     def nextValueF():
          # The nonlocal keyword is for referencing vars in outer non global scope (the keyword `global` is used for global scope) 
         nonlocal n
@@ -45,6 +48,7 @@ while value <= 5:
     print(value)
 
 was off by 2 because we increment before printing in combination with the last problem:
+
 def counter(starting):
     n = starting
     def nextValueF():
@@ -103,7 +107,7 @@ The bug that does apply here, and that I did not put in, is the misordering of p
 Calling count multiple times changes the state:
 (Yes I'm reusing variables, it's for readability I promise).
 
-We also need to remember to reset the state of our counter, and while that is true for how we've used function I will also show that that is not strictly necessary.
+We also need to remember to reset the state of our counter, and while that is true for how we've used `function` I will also show that that is not strictly necessary.
 '''
 
 print()
