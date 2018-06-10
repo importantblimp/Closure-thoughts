@@ -73,6 +73,24 @@ def generateChain(currentValue):
     return (currentValue, nextValueF)
 
 '''
+There are two important things to note:
+1) This is still a closure because nextValueF closes over `currentValue` which is outside of it's parameters.
+2) generateChain does not run forever (a useful attribute):
+   Let's start with what we're returning. A pair of `currentValue` and `nextValueF`
+   currentValue is a number and we're not doing anything with it anyway so it sits nicely in the pair.
+   nextValueF is a function, and one that calls us! Shouldn't that be infinite recursion?
+
+   Normally you'd be right, but python (and many other languages, although not all) support functions
+   "as first class citizens" - that's a phrase you may hear a lot. It means that functions are treated
+   as data like everything else the program works with. In this case it means we can put a function
+   (without calling it) into a data structure - here a pair.
+
+   So nextValueF isn't evaluated until we call it in the return value of generateChain, that prevents
+   infinite recursion!
+'''
+
+
+'''
 I've named the function generateChain because you call it in a chain:
 You call it once and get your value and function, then to get the
 next value you call the function you just reveived, and so on for all
